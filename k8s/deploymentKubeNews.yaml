@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-deployment
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: kube-news
+  template:
+    metadata:
+      labels:
+        app: kube-news
+      spec:
+        containers:
+        - name: site
+          image: aluizsys/kube-news:latest
+          ports:
+          - containerPort: 8080
+          env:
+          - name: DB_DATABASE
+            value: "kubenews"
+          - name: DB_USERNAME
+            value: "kubenews"
+          - name: DB_PASSWORD
+            value: "Pg#123"
+          - name: DB_HOST
+            value: "postgre"
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: cluster-service
+spec:
+  selector:
+    app: kube-news
+  ports:
+  - port: 80
+    targetPort: 8080
+  type: LoadBalancer
