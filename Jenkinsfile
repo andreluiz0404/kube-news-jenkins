@@ -11,7 +11,7 @@ pipeline
 			{
 				script
 				{
-					dockerapp = docker.build("aluizsys/kube-news:v${env.BUILD_ID}", '-f ./src/Dockerfile ./src')
+					dockerapp = docker.build("aluizsys/kube-news:${env.BUILD_ID}", '-f ./src/Dockerfile ./src')
 				}
 			}
 		}
@@ -25,7 +25,7 @@ pipeline
 					docker.withRegistry('https://registry.hub.docker.com', 'dockerhub')
 					{
 						dockerapp.push('latest')
-						dockerapp.push("v${env.BUILD_ID}")
+						dockerapp.push("${env.BUILD_ID}")
 					}
 				}
 			}
