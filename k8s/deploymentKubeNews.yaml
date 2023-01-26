@@ -14,7 +14,7 @@ spec:
       spec:
         containers:
         - name: site
-          image: aluizsys/kube-news:latest
+          image: aluizsys/kube-news:v{{TAG}}
           ports:
           - containerPort: 8080
           env:
