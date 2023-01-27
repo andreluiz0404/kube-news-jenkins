@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: cluster-deployment
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: kube-news
@@ -48,7 +48,7 @@ kind: Deployment
 metadata:
   name: postgre-deployment
 spec:
-  replicas: 5
+  replicas: 3
   selector:
     matchLabels:
       app: postgre
